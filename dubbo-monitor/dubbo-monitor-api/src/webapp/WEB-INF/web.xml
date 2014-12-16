@@ -1,0 +1,37 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+	<display-name>Simple MonitorX</display-name>
+
+	<!-- 指明spring配置文件在何处 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:*Context.xml</param-value>
+	</context-param>
+	<!-- <filter> <filter-name>resFilter</filter-name> <filter-class>com.alibaba.dubbo.container.page.ResourceFilter</filter-class> 
+		<init-param> <param-name>resources</param-name> <param-value>/user/local/monitor</param-value> 
+		</init-param> </filter> <filter-mapping> <filter-name>resFilter</filter-name> 
+		<url-pattern>/*</url-pattern> </filter-mapping> -->
+	<!-- 加载spring web application context -->
+	<listener>
+		<listener-class>
+			org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>pageServlet</servlet-name>
+		<servlet-class>com.alibaba.dubbo.container.page.PageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>pageServlet</servlet-name>
+		<url-pattern>*.html</url-pattern>
+	</servlet-mapping>
+
+	<!-- FLEX CONFIG -->
+	<session-config>
+		<session-timeout>120</session-timeout>
+	</session-config>
+</web-app>
